@@ -24,8 +24,8 @@ class Exit(Exception):
 # compilation des regex pour les paroles et les tablatures
 ID_PAROLES = "paroles_"
 ID_TABLATURES = "tablature_"
-REGEX_PAROLES = reCompile("^{}[a-zA-Z ]*$".format(ID_PAROLES))
-REGEX_TABLATURES = reCompile("^{}[a-zA-Z ]*$".format(ID_TABLATURES))
+REGEX_PAROLES = reCompile(f"^{ID_PAROLES}[a-zA-Z ]*$")
+REGEX_TABLATURES = reCompile(f"^{ID_TABLATURES}[a-zA-Z ]*$")
 
 # dossiers du projet
 BASEPATH = os.path.realpath(os.path.dirname(sys.argv[0]))
@@ -56,7 +56,7 @@ class obj_explorer:
 
     # renvois les paroles d'une chanson
     def get_paroles(self, chanson):
-        with open(os.path.join(self.pathParole, "{}{}".format(ID_PAROLES, chanson)), "r") as f:
+        with open(os.path.join(self.pathParole, f"{ID_PAROLES}{chanson}"), "r") as f:
             text = f.read()
         return text
 
@@ -70,7 +70,7 @@ class obj_explorer:
 
     # renvois un le chemin complet vers la tablature
     def get_path_tablatures(self, chanson):
-        return os.path.join(self.pathTablature, "{}{}".format(ID_TABLATURES, chanson))
+        return os.path.join(self.pathTablature, f"{ID_TABLATURES}{chanson}")
 
 
 ## ~~~~~~~~~~~~~~~~~~~~~~~~~~       COMMANDES BOT       ~~~~~~~~~~~~~~~~~~~~~~~~~~ ##
@@ -126,7 +126,7 @@ def button(update, context):
         path = obj_explorer().get_path_tablatures(query.data[2:])
         # on renvois la réponse au client (obligatoire sinon bug sur certains clients)
         query.answer()
-        query.edit_message_text(text="partition de {}".format(query.data[2:]))
+        query.edit_message_text(text=f"partition de {query.data[2:]}")
         # envois de la partition
         context.bot.send_photo(chat_id=query.message.chat_id, photo=open(path, "rb"))
 
@@ -140,7 +140,7 @@ Commandes disponibles:
 
 # affiche les erreurs rencontrés par le programme
 def error(update, context):
-    print("Update '{}' \ncaused error '{}'".format(update, context.error))
+    print(f"Update '{update}' \ncaused error '{context.error}'")
 
 
 ## ~~~~~~~~~~~~~~~~~~~~~~~~~~    FONCTION PRINCIPALE    ~~~~~~~~~~~~~~~~~~~~~~~~~~ ##
