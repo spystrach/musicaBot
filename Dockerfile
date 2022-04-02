@@ -7,7 +7,7 @@ WORKDIR /home/musicabot/Documents
 RUN ln -sf /bin/bash /bin/sh
 RUN useradd -ms /bin/bash musicabot &&\
     chown -R musicabot /home/musicabot
-USER interimbot
+USER musicabot
 
 # modules python neccessaires
 COPY requirements.txt ./
