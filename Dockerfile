@@ -6,7 +6,7 @@ FROM python:3.10-slim-buster
 WORKDIR /home/musicabot/Documents
 RUN ln -sf /bin/bash /bin/sh
 RUN useradd -ms /bin/bash musicabot &&\
-    chown -R musicabot /home/interimbot
+    chown -R musicabot /home/musicabot
 USER interimbot
 
 # modules python neccessaires
