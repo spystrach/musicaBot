@@ -2,7 +2,7 @@
 # RECHARGE LE BOT
 
 # navigue dans le bon dossier
-cd && cd "/home/`whoami`/Documents/musicaBot" || exit
+cd && cd "/home/$(whoami)/Documents/musicaBot" || exit
 
 # stopppe le conteneur
 docker stop musica_bot_1
