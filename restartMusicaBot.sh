@@ -1,7 +1,8 @@
+#!/bin/sh
 # RECHARGE LE BOT
 
 # navigue dans le bon dossier
-cd && cd /home/`whoami`/Documents/musicaBot
+cd && cd "/home/`whoami`/Documents/musicaBot" || exit
 
 # stopppe le conteneur
 docker stop musica_bot_1
@@ -19,4 +20,4 @@ docker build -t musica_bot .
 docker run -d --name musica_bot_1 musica_bot
 
 # fin
-cd
+cd || exit
